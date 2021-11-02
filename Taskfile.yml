@@ -19,9 +19,17 @@ tasks:
   test:
     desc: run a simple test on main.py
     cmds:
-      - python main.py world
+      - task test-hello
+      - task test-reverser
+      - echo "=== ALL TESTS PASS ==="
 
   test-hello:
     desc: run a simple test on main.py
     cmds:
-      - python main.py world | grep "Hello"      
+      - python main.py world | grep "Hello"
+      
+  test-reverser:
+    desc: run a simple test on reverser.py
+    cmds:
+      - python reverser.py ABC | grep "CBA"
+      - echo "{{.TASK}} are PASSED"       
