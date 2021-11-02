@@ -1,5 +1,9 @@
-def main_():
-    print("Hello, world")
+import fire
+
+
+def main_(name: str):
+    print(f"Hello, {name}")
 
 if __name__ == "__main__":
-    main_()
+    fire.Fire(main_)
+    

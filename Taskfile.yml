@@ -19,9 +19,9 @@ tasks:
   test:
     desc: run a simple test on main.py
     cmds:
-      - python main.py
+      - python main.py world
 
   test-hello:
     desc: run a simple test on main.py
     cmds:
-      - python main.py | grep "Hello"      
+      - python main.py world | grep "Hello"      
