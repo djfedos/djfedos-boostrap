@@ -12,11 +12,11 @@ def flip_map(map_x, map_y):
     for j in range(map_y.shape[1]):
         map_y[:,j] = [map_y.shape[0]-y for y in range(map_y.shape[0])]
 
-#Open the file by its path from CLI:
+#Open the file by its name and path from CLI:
 
-src = None
+src = None #if we have no global var, we'll get no a source image out of the function
 def fileopen(filename):
-    global src
+    global src #this is the same var
     src = cv.imread(cv.samples.findFile(filename))
     if src is None:
         sys.exit("File not found")
