@@ -32,4 +32,19 @@ tasks:
     desc: run a simple test on reverser.py
     cmds:
       - python reverser.py ABC | grep "CBA"
-      - echo "{{.TASK}} are PASSED"       
+      - echo "{{.TASK}} are PASSED"
+      
+  test-flipper-ui:
+    desc: image flip test
+    cmds:
+      - python flipper.py Remap_Tutorial_Original_Image.jpg
+
+  test-flipper-save:
+    desc: image flip save test
+    cmds:
+      - python flipper.py Remap_Tutorial_Original_Image.jpg --save_path __out/out.jpg
+      - |-
+        if [[ "$(du -sh __out/out.jpg | cut -d' ' -f1  )" == "0"  ]]; then
+          echo "Empty file"
+          exit 1
+        fi
