@@ -47,7 +47,7 @@ tasks:
   test-flipper-save:
     desc: image flip save test
     cmds:
-      - python flipper.py Remap_Tutorial_Original_Image.jpg --save_path __out/out.jpg
+      - python flipper.py Remap_Tutorial_Original_Image.jpg --save_path __out/out.jpg --text "Test passed"
       - |-
         if [[ "$(du -sh __out/out.jpg | cut -d' ' -f1  )" == "0"  ]]; then
           echo "Empty file"
