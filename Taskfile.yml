@@ -16,6 +16,11 @@ tasks:
     cmds:
       - conda create -n djfedos-bootstrap-env python=3.8 -y
 
+  go:
+    desc: 
+    cmds:
+    - conda activate djfedos-bootstrap-env    
+
   test:
     desc: run a simple test on main.py
     cmds:
