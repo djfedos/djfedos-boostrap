@@ -1,5 +1,8 @@
-#%%
+# %%
 #based on the exercise from https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces
+from typing import Counter
+
+
 def scope_test():
     def do_local():
         spam = "local spam"
@@ -25,6 +28,26 @@ def scope_test():
 scope_test()
 
 print("In global scope, after global assignment:", spam)
+
+# %%
+# Closure according to https://medium.com/python-features/introduction-to-closures-in-python-8d697ff9e44d
+def countdown(start):
+
+    def display():
+        n = start
+        while n > 0:
+            n -= 1
+            print(n, 'left')
+
+    return display
+
+counter1 = countdown(3)
+counter1()
+
+del countdown
+
+counter1()
+countdown(3)
 
 # %%
 # exercises on classes in Python from https://www.programiz.com/python-programming/class
