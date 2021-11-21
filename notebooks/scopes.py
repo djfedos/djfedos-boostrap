@@ -38,7 +38,7 @@ def countdown(start):
         while n > 0:
             n -= 1
             print(n, 'left')
-
+       
     return display
 
 counter1 = countdown(3)
@@ -48,6 +48,50 @@ del countdown
 
 counter1()
 countdown(3)
+
+# %%
+# how to throw errors on wrong input type (also in closure)
+def takes_ints(some_input):
+
+    def internal():
+        if type(some_input) is int:
+            print("thanks for the int")
+        else:
+            raise TypeError("wrong variable type, please give me an integer")
+    return internal
+
+tryout1 = takes_ints(100)
+tryout1()
+
+#to check out error raising, please uncomment two lines below this one:
+#tryout2 = takes_ints("this is a string") 
+#tryout2()
+
+# %%
+# closures with lists and dicts vs. integers and strings
+# attention! the code in this cell does not work yet
+
+def external(massive):
+
+    def internal():
+        if type(massive) == list:
+            print("Okay, this is a list")
+            for count, ele in enumerate(massive, 1):
+                print(count, ele)
+        elif type(massive) == dict:
+            print("Okay, this is a dict")
+            print(massive)
+        else:
+            print("Okay, it's trivial")
+            print(massive)
+    return internal
+
+#exampe_list = ["Asoka", "Bella", "Camilla", "Diana", "Elinor"]
+#some_list = external(exampe_list)
+#example_dict = {'Keyboards':'Jon Lord', 'Guitar':'Ritchie Blackmore', 'Bass':'Roger Glover', 'Drums':'Ian Paice', 'Vocals':'Ian Gillan'}
+#some_dict = external(example_dict)
+some_str = external("Dict example above is Deep Purple MK II lineup, by the way")
+some_float = external(0,25)
 
 # %%
 # exercises on classes in Python from https://www.programiz.com/python-programming/class
