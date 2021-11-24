@@ -106,13 +106,13 @@ print(MainModel.schema_json(indent=2))
 
 import json
 
-class Object:
+class Exampleclass: # this is a class, not an object
     pass
 
-me = Object()
+me = Exampleclass() # this is an object
 me.name = "Onur"
 me.age = 35
-me.dog = Object()
+me.dog = Exampleclass()
 me.dog.name = "Apollo"
 
 ser = json.dumps(me, default=lambda o: o.__dict__, sort_keys=True, indent=4)
