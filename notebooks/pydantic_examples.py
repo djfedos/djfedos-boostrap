@@ -102,4 +102,21 @@ class MainModel(BaseModel):
 # this is equivalent to json.dumps(MainModel.schema(), indent=2):
 print(MainModel.schema_json(indent=2))
 # %%
+# serialization without pydantic with json module
 
+import json
+
+class Object:
+    pass
+
+me = Object()
+me.name = "Onur"
+me.age = 35
+me.dog = Object()
+me.dog.name = "Apollo"
+
+ser = json.dumps(me, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+print(ser)
+
+# slightly edited code example from https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
+# %%
