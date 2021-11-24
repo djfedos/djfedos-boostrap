@@ -25,7 +25,7 @@ print(user.id)
 print(user.name)
 print(user.signup_ts)
 print(user.friends)
-type(user.friends[2]) # and now it _is_ an integer, pydantioc converts it
+type(user.friends[2]) # and now it _is_ an integer, pydantic converts it
 
 # %%
 
@@ -59,8 +59,23 @@ class FooBarModel(BaseModel):
 
 # here we make an object
 m = FooBarModel(foo=datetime(2032, 6, 1, 12, 13, 14), bar={'whatever': 123})
+print(m)
 #here we serialize it
-print(m.json())
+m_json = m.json()
+print(m_json)
+print(type(m_json)) # serialized
+# here we can exchange this data between enviroments
+d = json.loads(m_json)
+print(d)
+print(type(d)) # deserialized
+
+deser = FooBarModel(**d)
+
+print(deser)
+print(deser == m) #
+
+# %%
+
 
 # %%
 # here is an example of serialization of a model to a JSON Schema
@@ -106,16 +121,24 @@ print(MainModel.schema_json(indent=2))
 
 import json
 
-class Exampleclass: # this is a class, not an object
+class Exampleclass:
     pass
 
-me = Exampleclass() # this is an object
+me = Exampleclass()
+print(dir(me))
 me.name = "Onur"
 me.age = 35
 me.dog = Exampleclass()
 me.dog.name = "Apollo"
 
-ser = json.dumps(me, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+def obj_to_dict(o):
+    print(o)
+    print(o.__dict__)
+    return o.__dict__
+
+
+print(dir(me))
+ser = json.dumps(me, default=obj_to_dict, sort_keys=True, indent=4)
 print(ser)
 
 # slightly edited code example from https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
