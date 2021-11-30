@@ -2,6 +2,8 @@
 #based on the exercise from https://docs.python.org/3/tutorial/classes.html#python-scopes-and-namespaces
 from typing import Counter
 
+from numpy.ma.core import not_equal
+
 
 def scope_test():
     def do_local():
@@ -69,29 +71,54 @@ tryout1()
 
 # %%
 # closures with lists and dicts vs. integers and strings
-# attention! the code in this cell does not work yet
+# I don't quite get the difference, to be honest
 
 def external(massive):
 
     def internal():
-        if type(massive) == list:
-            print("Okay, this is a list")
-            for count, ele in enumerate(massive, 1):
-                print(count, ele)
-        elif type(massive) == dict:
-            print("Okay, this is a dict")
+        if type(massive) == dict:
+            print('OK, this is a dict')
+            print('')
+            for key, value in massive.items():
+                print(key, ':', value)
+                print('')
+        elif type(massive) == list:
+            print('OK, this is a list')
+            print('')
+            for ele in enumerate(massive):
+                print(ele[0], ':', ele[1])
+                print('')
+        elif type(massive) == str:
+            print('OK, this is a string')
+            print('')
             print(massive)
+            print('')
+        elif type(massive) == float:
+            print('OK, this is a floating point number')
+            print('')
+            print(massive)
+            print('')
         else:
-            print("Okay, it's trivial")
+            print("I don't know the type of the input and how to deal with it")
+            print('')
             print(massive)
+
+      
     return internal
 
-#exampe_list = ["Asoka", "Bella", "Camilla", "Diana", "Elinor"]
-#some_list = external(exampe_list)
-#example_dict = {'Keyboards':'Jon Lord', 'Guitar':'Ritchie Blackmore', 'Bass':'Roger Glover', 'Drums':'Ian Paice', 'Vocals':'Ian Gillan'}
-#some_dict = external(example_dict)
+exampe_list = ["Asoka", "Bella", "Camilla", "Diana", "Elinor"]
+some_list = external(exampe_list)
+example_dict = {'Keyboards':'Jon Lord', 'Guitar':'Ritchie Blackmore', 'Bass':'Roger Glover', 'Drums':'Ian Paice', 'Vocals':'Ian Gillan'}
+some_dict = external(example_dict)
 some_str = external("Dict example above is Deep Purple MK II lineup, by the way")
-some_float = external(0,25)
+some_float = external(0.25)
+some_bool = external(True)
+
+some_list()
+some_dict()
+some_str()
+some_float()
+some_bool()
 
 # %%
 # exercises on classes in Python from https://www.programiz.com/python-programming/class
