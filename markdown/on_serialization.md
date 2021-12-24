@@ -46,11 +46,11 @@ This is a native Python module for data serialization and deserialization.
 ## pydantic
 
 **pydantic** is a Python tool intended mainly for data validation. Though as a very important and useful side effect it provides built-in serialization routines.
-To use pydantic, you should create at least one class inhereting from pydantic BaseModel. While dealing with the objects of this class pydantic will provide data validation for fields (class properties). See [example](../notebooks/pydantic_examples.py).
+To use pydantic, you should create at least one class inhereting from pydantic BaseModel. While dealing with the objects of this class pydantic will provide data validation for fields (class properties). See [example](../notebooks/pydantic_examples_nb.py).
 
 ### Serialization with pydantic
 
-pydantic also provides and ability to serialize objects of its classes that are based on pydantic base model to JSON format. This process it described in pydantic documentation [here](https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeljson). In my jupyter notebook you can see [the example](../notebooks/pydantic_examples.py) of this operation.
+pydantic also provides and ability to serialize objects of its classes that are based on pydantic base model to JSON format. This process it described in pydantic documentation [here](https://pydantic-docs.helpmanual.io/usage/exporting_models/#modeljson). In my jupyter notebook you can see [the example](../notebooks/pydantic_examples_nb.py) of this operation.
 
 There is also an option to serialize models, not objects, to JSON Schema format. JSON Schema describes a model of data representation in JSON for particular context. As well pydantic models do the same for data in Python program, so this option is kind of expected. You can see some exampes [here](https://pydantic-docs.helpmanual.io/usage/schema/).
 

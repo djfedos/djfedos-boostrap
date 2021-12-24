@@ -1,4 +1,5 @@
 #%%
+# this file is for https://problemsolvingwithpython.com exercises
 import numpy as np
 import matplotlib.pyplot as plt
 #%%
@@ -136,6 +137,17 @@ ax.yaxis.grid(True)
 plt.tight_layout()
 plt.savefig('bar_plot.png')
 plt.show()
+
+# %%
+# functions demo
+# free fall distance
+
+def falldist(t, g=9.81): # t is rime in seconds, g is gravity acceleration
+    d = 0.5*g*t**2 # 
+    return d
+
+print('On the Earth:', falldist(3)) # g = 9,81 m/s^2 on Earth, so it's a default
+print('On the Moon:', falldist(3, 1.625)) # but on the Moon g = 1.625 m/s^2
 
 # %%
 

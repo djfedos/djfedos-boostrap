@@ -131,3 +131,6 @@ dmypy.json
 #Custom stuff
 *.jpg
 __out
+
+.idea
+.idea/*
