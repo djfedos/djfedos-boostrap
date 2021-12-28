@@ -32,6 +32,9 @@ say_hey()
 #%%
 # a calculator from a video course, once again revisited.
 # trying a decorator for catching invalid input
+# implemented math operations as static methods
+# negative power processing added to exponent method
+
 import functools
 
 
@@ -62,27 +65,62 @@ while op not in ["+", "-", "*", "/", "**"]:
 num2 = get_num()
 
 
-def exponent(base, power):
-    exp_result = 1
-    for i in range(power):
-        exp_result *= base
-    return exp_result
+
+class CalcEngine():
+    "A class to perform calculations with its static methods"
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+
+    @staticmethod
+    def add_nums(self, num1, num2):
+        print(num1 + num2)
+
+    @staticmethod
+    def substract_nums(self, num1, num2):
+        print(num1 - num2)
+
+    @staticmethod
+    def multiply_nums(num1, num2):
+        print(num1 * num2)
+
+    @staticmethod
+    def divide_nums(num1, num2):
+        if num2 == 0:
+            print("Don't try to divide by zero please")
+        else:
+            print(num1 / num2)
+
+    @staticmethod
+    def exponent(num1, num2):
+        exp_result = 1
+        num2 = round(num2)
+        print("Note that the power value is always rounded to a whole number")
+        if num2 == 0:
+            print(1)  # it's faster, isn't it?
+        elif num2 > 0:
+            for i in range(num2):
+                exp_result *= num1
+            print(exp_result)
+        else:
+            num2 = abs(num2)
+            for i in range(num2):
+                exp_result *= num1
+            exp_result = 1 / exp_result
+            print(exp_result)
 
 
 if op == "+":
-    print(num1 + num2)
+    CalcEngine.add_nums(num1, num2)
 elif op == "-":
-    print(num1 - num2)
+    CalcEngine.substract_nums(num1, num2)
 elif op == "*":
-    print(num1 * num2)
+    CalcEngine.multiply_nums(num1, num2)
 elif op == "**":
-    print("Note that the power value is always rounded to a whole number")
-    print(exponent(num1, round(num2)))  # our custom exponent written above
-else:  # op == "/", all the other cases are excluded above
-    if num2 == 0:
-        print("Don't try to divide by zero please")
-    else:
-        print(num1 / num2)
+    CalcEngine.exponent(num1, num2)
+else:
+    CalcEngine.divide_nums(num1, num2)
+
 
 #%%
 # here we do it wrong
@@ -220,4 +258,32 @@ def countdown(seconds):
 
 countdown(10)
 
+#%%
+# that decorator registers a function as a plugin not wrapping it
+# copypasted directly and look what happens though...
+
+import random
+PLUGINS = dict()
+
+def register(func):
+    """Register a function as a plug-in"""
+    PLUGINS[func.__name__] = func
+    return func
+
+@register
+def say_hello(name):
+    return f"Hello {name}"
+
+@register
+def be_awesome(name):
+    return f"Yo {name}, together we are the awesomest!"
+
+def randomly_greet(name):
+    greeter, greeter_func = random.choice(list(PLUGINS.items()))
+    print(f"Using {greeter!r}")
+    return greeter_func(name)
+
+
+randomly_greet("Nick")
+# it fails to work as expected! or did I get something wrong?
 #%%
