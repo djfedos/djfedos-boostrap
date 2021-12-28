@@ -73,19 +73,11 @@ class CalcEngine():
         self.num2 = num2
 
     @staticmethod
-<<<<<<< HEAD
-    def add_nums(self, num1, num2):
-        print(num1 + num2)
-
-    @staticmethod
-    def substract_nums(self, num1, num2):
-=======
     def add_nums(num1, num2):
         print(num1 + num2)
 
     @staticmethod
     def substract_nums(num1, num2):
->>>>>>> Add static methods
         print(num1 - num2)
 
     @staticmethod
