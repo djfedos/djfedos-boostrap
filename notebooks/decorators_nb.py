@@ -161,11 +161,11 @@ def do_twice(func):
 
 
 @do_twice
-def greet(name):
-    print(f"Hello, {name}")
+def greet(name, name2):
+    print(f"Hello, {name}, Hi, {name2}, what's up?")
 
 
-greet("Kitty")
+greet("Kitty", "Fedor")
 
 #%%
 # timing decorator: a stopwatch for function runtime
@@ -287,12 +287,12 @@ def say_hello(name):
 def be_awesome(name):
     return f"Yo {name}, together we are the awesomest!"
 
+
 def randomly_greet(name):
     greeter, greeter_func = random.choice(list(PLUGINS.items()))
     print(f"Using {greeter!r}")
     return greeter_func(name)
 
 
-randomly_greet("Nick")
-# it fails to work as expected! or did I get something wrong?
+print(randomly_greet("Nick"))
 #%%
