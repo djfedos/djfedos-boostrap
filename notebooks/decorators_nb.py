@@ -51,19 +51,23 @@ def invalid_input_catch(func):
 
 @invalid_input_catch
 def get_num():
-    num = float(input("Please enter a number"))
+    num = float(input("Please enter a number "))
     return num
+
+
+def get_op():
+    op = input("Please specify the operation: +, -, *, / or ** ")
+    while op not in ["+", "-", "*", "/", "**"]:
+        print("You've entered a wrong operator, please retry")
+        op = input("Please specify the operation: +, -, *, / or ** ")
+    return op
 
 
 num1 = get_num()
 
-op = input("Please specify the operation: +, -, *, / or **")
-while op not in ["+", "-", "*", "/", "**"]:
-    print("You've entered a wrong operator, please retry")
-    op = input("Please specify the operation: +, -, *, / or **")
+op = get_op()
 
 num2 = get_num()
-
 
 
 class CalcEngine():
@@ -93,33 +97,38 @@ class CalcEngine():
 
     @staticmethod
     def exponent(num1, num2):
-        exp_result = 1
         num2 = round(num2)
         print("Note that the power value is always rounded to a whole number")
         if num2 == 0:
             print(1)  # it's faster, isn't it?
         elif num2 > 0:
+            exp_result = 1
             for i in range(num2):
                 exp_result *= num1
             print(exp_result)
         else:
-            num2 = abs(num2)
-            for i in range(num2):
-                exp_result *= num1
-            exp_result = 1 / exp_result
+            inv_result = 1
+            pos_num2 = -num2
+            for i in range(pos_num2):
+                inv_result *= num1
+            exp_result = 1 / inv_result
             print(exp_result)
 
 
-if op == "+":
-    CalcEngine.add_nums(num1, num2)
-elif op == "-":
-    CalcEngine.substract_nums(num1, num2)
-elif op == "*":
-    CalcEngine.multiply_nums(num1, num2)
-elif op == "**":
-    CalcEngine.exponent(num1, num2)
-else:
-    CalcEngine.divide_nums(num1, num2)
+def apply_operator(op = op, num1 = num1, num2 = num2):
+    if op == "+":
+        CalcEngine.add_nums(num1, num2)
+    elif op == "-":
+        CalcEngine.substract_nums(num1, num2)
+    elif op == "*":
+        CalcEngine.multiply_nums(num1, num2)
+    elif op == "**":
+        CalcEngine.exponent(num1, num2)
+    else:
+        CalcEngine.divide_nums(num1, num2)
+
+
+apply_operator()
 
 
 #%%
