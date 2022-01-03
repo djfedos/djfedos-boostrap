@@ -49,7 +49,7 @@ def fizzbuzz(count_to = count_to):
 fizzbuzz()
 
 # %%
-# TODO: fizzbuzz generalization
+# fizzbuzz generalization
 
 count_to = 100
 
