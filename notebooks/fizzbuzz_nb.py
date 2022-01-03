@@ -54,6 +54,13 @@ fizzbuzz()
 count_to = 100
 
 numbers_and_phrases = {3:"Fizz", 5:"Buzz", 15:"Fizzbuzz"}  # edit and add more on your taste
+# numbers_and_phrases = {3:"Fizz", 6:"Buzz", 12:"Fizzbuzz", 18:'Foozbeez'}  # see this as an example
+
+# if number divides by x and by y, both phrases are written to output_list
+# even if x and y are not coprimes
+# uncomment an example below to check this behavior:
+# numbers_and_phrases = {3:"Fizz", 7:"Buzz", 12:"Fizzbuzz", 18:'Foozbeez'}
+ 
 
 descendind_numbers = list(numbers_and_phrases.keys())
 descendind_numbers.sort(reverse=True)
@@ -86,23 +93,26 @@ non_divisibles = find_non_divisibles()
 
 def fizzbuzz(count_to = count_to):
     output_list = []
-    for unit in range(1, count_to + 1):
-        unit_is_divisible = False
-        for num in divisibles:
-            if unit % num == 0:
-                phrase = numbers_and_phrases.get(num)
-                output_list.append(phrase)
-                unit_is_divisible = True
-        if not unit_is_divisible:
-            for num in non_divisibles:
-                if unit % num == 0:
-                    phrase = numbers_and_phrases.get(num)
-                    output_list.append(phrase)
-                    unit_is_divisible = True
-            if not unit_is_divisible:
-                output_list.append(unit)
-                
+    for item in range(1, count_to + 1):
+        item_is_divisible = False
+        what_we_output = ""
 
+        if not item_is_divisible:
+            for num in divisibles:
+                if item % num == 0:
+                    phrase = numbers_and_phrases.get(num)
+                    what_we_output += f"{phrase} "
+                    item_is_divisible = True
+        if not item_is_divisible:
+            for num in non_divisibles:
+                if item % num == 0:
+                    phrase = numbers_and_phrases.get(num)
+                    what_we_output += f"{phrase} "
+                    item_is_divisible = True
+        if not item_is_divisible:
+            what_we_output = item
+
+        output_list.append(what_we_output)
     return output_list
         
 
