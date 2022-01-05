@@ -155,7 +155,7 @@ class Book():
     # here we define what to print on print(object_of_Book_class) call
     def __str__(self):
         return "<" + self.name + " by " + self.author + ">"
-    # here we make a method for out Book class. this is a function inside a class
+    # here we make a method for our Book class. this is a function inside a class
     def page_number(self, font_size=12):
         length_in_words = self.length_in_words #local var length_in_words for page_number gets its value from the data attribute of the class
         words_per_page = 300 - (font_size - 12)*10
