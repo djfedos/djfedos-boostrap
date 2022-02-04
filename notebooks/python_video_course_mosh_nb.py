@@ -2,6 +2,10 @@
 #%%
 # here will be a formatted string and string methods
 
+from msilib.schema import Class
+from unicodedata import name
+
+
 first_name = "John"
 last_name = "Smith"
 
@@ -134,3 +138,100 @@ a, b, c = coordinates_list  # works with lists and tuples as well
 print(f"a = {a}, b = {b}, c = {c}")
 
 #%%
+# classes
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+    
+    def talk(self):
+        print(f"Hi, I'm {self.name}")
+
+
+person1 = Person("Joe")
+person1.talk()
+
+# %%
+
+class Mammal:
+    def walk(self):
+        print("walk")
+
+
+class Dog(Mammal):
+    def bark(self):
+        print("bark")
+
+
+class Cat(Mammal):
+    pass
+
+
+dog1 = Dog()
+dog1.walk()
+dog1.bark()
+
+# %%
+import mass_converters
+
+print(mass_converters.lbs_to_kg(17))
+
+# %%
+from utils import find_max
+
+list_of_nums = [12, 5, 5, 51, 7, 48, 3, 11, 1.25, 33]
+print(find_max(list_of_nums))
+
+# %%
+# how to make a package: make a folder with __init__.py and modules inside 
+import ecommerce.shipping
+
+ecommerce.shipping.calc_shipping()
+# %%
+from ecommerce.shipping import calc_shipping
+
+calc_shipping()
+
+# %%
+from ecommerce import shipping
+
+shipping.calc_shipping()
+
+# %%
+import random
+
+for i in range(3):
+    print(random.random())
+    print(random.randint(10, 20))
+
+members = ['John', 'Mary', 'Joseph', 'Mosh']
+
+leader = random.choice(members)
+print(leader)
+
+
+# %%
+import random
+
+
+class Dice:
+    def roll(self):
+        roll_result = (random.randint(1, 6), random.randint(1, 6))
+        return roll_result
+
+
+dice1 = Dice()
+dice1.roll()
+
+# %%
+# pathlib
+from pathlib import Path
+
+path = Path("ecommerce")
+print(path.exists())
+for file in path.glob("*.py"):  #path.glob() creates a generator object that is iterable
+    print(file)
+
+# path.mkdir("new") that's how we make a new directory called "new"
+
+# %%
