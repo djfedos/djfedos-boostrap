@@ -6,6 +6,11 @@ def permutate(charlist):
     anagrams = []
     heads_and_tails = [[[], charlist]]
 
+    # TODO:
+    # the idea of the memory efficient version is to write heads_and_tails to the file
+    # and to read them from the file as needed
+    # and to put out anagrams (no tail, head only) one by one, using print() and/or to the file as well
+
     
     def branching(heads_and_tails = heads_and_tails):
         for head_and_tail in heads_and_tails:
@@ -25,11 +30,8 @@ def permutate(charlist):
 
     branching()
 
-    # uncomment two following lines to print anagrams and their counter
-    # for num, anagram in enumerate(anagrams, 1):
-    #     print(num, anagram)
-
-    return anagrams
+    for num, anagram in enumerate(anagrams, 1):
+        print(num, anagram)
 
 
 # that's how we pass a source charlist into our program: python perm-brute-tree.py "[e, x, a, m, p, l, e]"
