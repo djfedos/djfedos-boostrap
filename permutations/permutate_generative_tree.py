@@ -25,8 +25,8 @@ def permutate(charlist):
 
     branching()
 
-    for num, anagram in enumerate(anagrams):
-        print(num + 1, anagram)
+    for num, anagram in enumerate(anagrams, 1):
+        print(num, anagram)
 
 
 # that's how we pass a source charlist into our program: python perm-brute-tree.py "[e, x, a, m, p, l, e]"
