@@ -3,6 +3,10 @@
 
 def permutate(charlist):
     
+    # that's how we can simply input an integer number instead of list or string, for convenience
+    if isinstance(charlist, int):
+        charlist = str(charlist)
+    
     anagrams = []
     heads_and_tails = [[[], charlist]]
 
@@ -32,7 +36,23 @@ def permutate(charlist):
     return anagrams
 
 
-# that's how we pass a source charlist into our program: python perm-brute-tree.py "[e, x, a, m, p, l, e]"
+# that's how we can pass a source charlist into our program: 
+    
+    # python perm-brute-tree.py "[l, i, s, t]"
+    # python perm-brute-tree.py "list"
+    # python perm-brute-tree.py list
+
+    # python perm-brute-tree.py "[1, 2, 3, 4]"
+    # python perm-brute-tree.py "1234"
+    # python perm-brute-tree.py 1234
+
+# python perm-brute-tree.py [l, i, s, t] or # python perm-brute-tree.py [1, 2, 3, 4] will not do
+
+# list of 6 or more characters will crash the program due to exceeding the maximum recursion depth
+
+# how to put the text above into --help message?
+# and how to customize Usage message?
+
 if __name__== '__main__':
     import fire
     fire.Fire(permutate)

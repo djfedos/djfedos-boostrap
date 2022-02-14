@@ -10,3 +10,7 @@ class TestPermutate(unittest.TestCase):
         anagrams = permutate_generative_tree.permutate([1, 2, 3])
         expected_anagrams = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
         self.assertEqual(anagrams, expected_anagrams)
+
+
+if __name__ == "__main__":
+    unittest.main()
