@@ -1,6 +1,3 @@
-import re
-
-
 def load_tokens(db_path):
     """ 
     O(n*k), n is number of tokens, k is number of chars in a token 
@@ -16,7 +13,6 @@ def load_tokens(db_path):
                     cur[char] = {}
                 cur = cur[char]
             cur[None] = None
-            cur = cur[None]
         return dictrie
 
 
@@ -36,7 +32,7 @@ def get_completions(my_db, prefix, limit=-1):
     tails = branching(part_tree)
     for tail in tails:
         completions.append(prefix + tail)
-    if limit == -1 or len(completions) < limit + 1:
+    if limit == -1 or len(completions) < limit:
         return completions
     else:
         return completions[0:limit]
@@ -58,7 +54,7 @@ def branching(part_tree, tail=''):
     return tails
 
 my_db = load_tokens('./tokens.txt')
-print(get_completions(my_db, 'm', 2))
+print(get_completions(my_db, 'm', 3))
 
 
 
