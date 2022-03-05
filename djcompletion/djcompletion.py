@@ -36,28 +36,31 @@ def get_completions(my_db, prefix, limit=-1):
         return completions
     else:
         return completions[0:limit]
-    
-tails = []  # here we collect all the branches of the part_tree
-    
-def branching(part_tree, tail=''):
+   
+# in tails list we collect all the branches of the part_tree
+
+def branching(part_tree, tail='', tails=[]):
     tail_grows = False
-    if part_tree != {None:None}:
+    if part_tree:
         for node in part_tree:
             if tail_grows:
                 tail = tail[0:-1]
                 tail_grows = False
-            tail += node
-            tail_grows = True
+            if node:
+                tail += node
+                tail_grows = True
             branching(part_tree[node], tail)
     else:
         tails.append(tail)
     return tails
 
-my_db = load_tokens('./tokens.txt')
-print(get_completions(my_db, 'm', 3))
+
+def djcompletion_cli(my_db, prefix, limit=-1):
+    my_db = load_tokens(my_db)
+    return get_completions(my_db, prefix, limit)
 
 
 
-# if __name__== '__main__':
-#     import fire
-#     fire.Fire(load_tokens)
+if __name__== '__main__':
+    import fire
+    fire.Fire(djcompletion_cli)
