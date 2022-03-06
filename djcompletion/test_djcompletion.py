@@ -3,36 +3,11 @@ import djcompletion
 
 class TestDjcompletion(unittest.TestCase):
 
-    # def test_load_tokens(self):
-    #     # arrange
-    #     token_path = 'tokens.txt'
-        
-    #     # act
-    #     my_db = djcompletion.load_tokens(token_path)
-
-    #     # assert            
-    #     self.assertEqual(len('tokens.txt'), len(my_db))
-    
-    
     def test_completions_ma(self):
         # arrange
         expected_completions = ['marsaba', 'maramba', 'man', 'may']
         token_path = 'tokens.txt'
         prefix = 'ma'
-        
-        # act
-        my_db = djcompletion.load_tokens(token_path)
-        actual_completions = djcompletion.get_completions(my_db, prefix)
-
-        # assert            
-        self.assertEqual(expected_completions, actual_completions)
-
-
-    def test_completions_ba(self):
-        # arrange
-        expected_completions = ['bar', 'baron', 'banya']
-        token_path = 'tokens.txt'
-        prefix = 'ba'
         
         # act
         my_db = djcompletion.load_tokens(token_path)

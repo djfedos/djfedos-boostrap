@@ -60,7 +60,6 @@ def djcompletion_cli(my_db, prefix, limit=-1):
     return get_completions(my_db, prefix, limit)
 
 
-
 if __name__== '__main__':
     import fire
     fire.Fire(djcompletion_cli)
