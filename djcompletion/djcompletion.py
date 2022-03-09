@@ -36,7 +36,7 @@ def get_completions(my_db, prefix, limit=-1):
         else:
             part_tree = cur[char]
         cur = cur[char]
-    tails = branching(part_tree)
+    tails = branching(part_tree, tails=[])
     for tail in tails:
         completions.append(prefix + tail)
     if limit == -1 or len(completions) < limit:
@@ -46,10 +46,11 @@ def get_completions(my_db, prefix, limit=-1):
    
 # in tails list we collect all the branches of the part_tree
 
-def branching(part_tree, tail='', tails=[]):
+def branching(part_tree, tail='', tails=None):
     """
     O(n*k) in worst case 
     """
+    # tails = tails or []  # if not tails: tails = []
     tail_grows = False
     if part_tree:
         for node in part_tree:
@@ -59,7 +60,7 @@ def branching(part_tree, tail='', tails=[]):
             if node:
                 tail += node
                 tail_grows = True
-            branching(part_tree[node], tail)
+            branching(part_tree[node], tail, tails=tails)
     else:
         tails.append(tail)
     return tails
