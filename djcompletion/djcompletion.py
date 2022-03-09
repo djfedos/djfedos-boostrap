@@ -1,3 +1,7 @@
+"""
+O(n*k) overall complexity (two sequencial O(n*k) stages + O(#prefix) stage)
+"""
+
 def load_tokens(db_path):
     """ 
     O(n*k), n is number of tokens, k is number of chars in a token 
@@ -40,6 +44,9 @@ def get_completions(my_db, prefix, limit=-1):
 # in tails list we collect all the branches of the part_tree
 
 def branching(part_tree, tail='', tails=[]):
+    """
+    O(n*k) in worst case 
+    """
     tail_grows = False
     if part_tree:
         for node in part_tree:

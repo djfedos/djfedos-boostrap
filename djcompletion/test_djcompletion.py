@@ -16,6 +16,19 @@ class TestDjcompletion(unittest.TestCase):
         # assert            
         self.assertEqual(expected_completions, actual_completions)
 
+    def test_completions_ba(self):
+            # arrange
+            expected_completions = ['bar', 'baron', 'banya']
+            token_path = 'tokens.txt'
+            prefix = 'ba'
+            
+            # act
+            my_db = djcompletion.load_tokens(token_path)
+            actual_completions = djcompletion.get_completions(my_db, prefix)
+
+            # assert            
+            self.assertEqual(expected_completions, actual_completions)
+
 
 if __name__ == "__main__":
     unittest.main()
