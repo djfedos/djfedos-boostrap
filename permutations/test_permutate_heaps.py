@@ -2,9 +2,7 @@
 
 import json
 import unittest
-from unittest import result
 import permutate_heaps
-from json import loads
 
 class TestPermutate(unittest.TestCase):
     

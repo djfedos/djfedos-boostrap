@@ -1,4 +1,8 @@
-import re
+"""
+O(n*k) overall complexity (two sequencial O(n*k) stages + O(#prefix) stage)
+"""
+import functools
+import time
 
 
 def load_tokens(db_path):
@@ -16,7 +20,6 @@ def load_tokens(db_path):
                     cur[char] = {}
                 cur = cur[char]
             cur[None] = None
-            cur = cur[None]
         return dictrie
 
 
@@ -33,35 +36,54 @@ def get_completions(my_db, prefix, limit=-1):
         else:
             part_tree = cur[char]
         cur = cur[char]
-    tails = branching(part_tree)
+    tails = branching(part_tree, tails=[])
     for tail in tails:
         completions.append(prefix + tail)
-    if limit == -1 or len(completions) < limit + 1:
+    if limit == -1 or len(completions) < limit:
         return completions
     else:
         return completions[0:limit]
-    
-tails = []  # here we collect all the branches of the part_tree
-    
-def branching(part_tree, tail=''):
+   
+# in tails list we collect all the branches of the part_tree
+
+def branching(part_tree, tail='', tails=None):
+    """
+    O(n*k) in worst case 
+    """
+    # tails = tails or []  # if not tails: tails = []
     tail_grows = False
-    if part_tree != {None:None}:
+    if part_tree:
         for node in part_tree:
             if tail_grows:
                 tail = tail[0:-1]
                 tail_grows = False
-            tail += node
-            tail_grows = True
-            branching(part_tree[node], tail)
+            if node:
+                tail += node
+                tail_grows = True
+            branching(part_tree[node], tail, tails=tails)
     else:
         tails.append(tail)
     return tails
 
-my_db = load_tokens('./tokens.txt')
-print(get_completions(my_db, 'm', 2))
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        value = func(*args, **kwargs)
+        end = time.perf_counter()
+        runtime = end - start
+        print(f"Finished {func.__name__!r} in {runtime:.4f} s")
+        return value
+    return wrapper
 
 
+@timer
+def djcompletion_cli(my_db, prefix, limit=-1):
+    my_db = load_tokens(my_db)
+    return get_completions(my_db, prefix, limit)
 
-# if __name__== '__main__':
-#     import fire
-#     fire.Fire(load_tokens)
+
+if __name__== '__main__':
+    import fire
+    fire.Fire(djcompletion_cli)
