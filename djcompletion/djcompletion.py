@@ -66,23 +66,9 @@ def branching(part_tree, tail='', tails=None):
     return tails
 
 
-def timer(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        start = time.perf_counter()
-        value = func(*args, **kwargs)
-        end = time.perf_counter()
-        runtime = end - start
-        print(f"Finished {func.__name__!r} in {runtime:.4f} s")
-        return value
-    return wrapper
-
-
-@timer
 def djcompletion_cli(my_db, prefix, limit=-1):
     my_db = load_tokens(my_db)
     return get_completions(my_db, prefix, limit)
-
 
 if __name__== '__main__':
     import fire
