@@ -10,7 +10,7 @@ def dedupe(list_with_dupes):
     for item in list_with_dupes:  # our code misses the next item not knowing the indexes have changed
         if list_without_dupes.count(item) > 1:
             list_without_dupes.remove(item)
-    return list_without_dupes
+    return list_without_dupes/home/djfedos/repos/ydu-202-searchapp
 
 
 def dedupe_reference(list_with_dupes):

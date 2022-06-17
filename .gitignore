@@ -128,9 +128,13 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#Custom stuff
+# Custom stuff
 *.jpg
 __out
 
 .idea
 .idea/*
+
+# PDM
+.pdm.toml
+__pypackages__/

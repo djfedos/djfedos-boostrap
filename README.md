@@ -1,3 +1,4 @@
 # djfedos-boostrap
-My first Github repository
-It mostly contains tutorials and exercises. 
+My sandbox Github repository
+
+It mostly contains tutorials, exercises and experiments
