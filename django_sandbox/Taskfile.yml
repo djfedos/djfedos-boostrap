@@ -1,0 +1,48 @@
+# https://taskfile.dev
+
+version: "3"
+# this Taskfile helps to build and maintain a Django-based project
+# feel free to use it to speed up your workflow
+
+
+vars:
+  GREETING: |-
+    Automate django management commands with task shortcuts (aliases):
+
+tasks:
+  default:
+    desc: list all tasks available
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -a
+
+  proj:
+    desc: 'Start a new django project. Usage: sp -- [PROJECT NAME]'
+    cmds:
+      - django-admin startproject {{.CLI_ARGS}} .
+
+  su:
+    desc: Create a superuser
+    cmds:
+      - python manage.py createsuperuser
+
+  app:
+    desc:  'Create a new Django app. Usage: app -- [APP NAME]'
+    cmds:
+      - python manage.py startapp {{.CLI_ARGS}}
+  m:
+    desc: Migrate (apply updates in code and in configs)
+    cmds:
+      - python manage.py makemigrations
+      - python manage.py migrate
+
+  sh:
+    desc: Enter the manage.py shell
+    cmds:
+      - python manage.py shell
+
+  serve:
+    desc: Start a lightweight Web server for development and also serves static files on port 9001
+    cmds:
+      - python manage.py runserver 9001
+

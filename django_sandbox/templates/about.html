@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<a href="https://lewisacids.github.io">Here is our very custom link</a>
+{% endblock navbar %}
+
+
+
+{% block content %}
+    <h1>About</h1>
+    <p>This is a template</p>
+
+    {{ my_text }}, {{ my_number }}
+
+    <ul>
+        {% for my_list_item in my_list %}
+            {% if my_list_item == 69 %}
+            <li>{{ my_list_item }} - nice!</li>
+            {% elif my_list_item == 667 %}
+            <li>{{ my_list_item|add:3 }}</li>
+            {% else %}
+            <li>{{ forloop.counter }} - {{ my_list_item }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+{% endblock content %}
