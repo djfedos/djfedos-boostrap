@@ -25,4 +25,5 @@ tl2 = [-1,0,3,5,9,12]
 tl = [-1, 0, 5]
 
 if __name__ == '__main__':
-    print(search(tl2, 2))
+    # print(search(tl2, 2))
+    print(search([0, 1, 5, 9], 10))
