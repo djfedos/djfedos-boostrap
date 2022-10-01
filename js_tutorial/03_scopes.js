@@ -94,5 +94,35 @@ hasBlockInIt([1, 2, 3, 4])
 // the scope of a whole function, and i in for loop overrides the i from outside
 
 // that's why using let to declare variables is preferrable
-// it's kind of more intuitive
+// it's kind of more intuitive, and allows to avoid hoisting (see below)
 // const also has a block scope
+
+// hoisting:
+
+var x = function() {
+    console.log(y)
+    // console.log(z)
+    var y = 'hoisted var'
+    let z = 'non-hoisted let'
+}
+
+x()
+
+// note that if you call y before assingment and (!) declaration, you get no errors
+// the value of y is undefined though
+// if you uncomment calling z before declaration and assignment, you'll get an error
+// if it's necessary to use var and not let, expicitly declare and assign all vars
+// on the top of the function (even if you use them later) to know what's going on
+
+
+// see that the function below will once again output undefined
+// it will use Windows object var only if we'll remove the func scope var
+
+var yy = 'Window object var'
+
+var xx = function() {
+    console.log(yy)
+    var yy = 'hoisted var'
+}
+
+xx()
