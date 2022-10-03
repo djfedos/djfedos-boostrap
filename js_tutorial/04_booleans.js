@@ -79,4 +79,4 @@ console.log(testIfStrictlyNotEqual(2, 2));
 // && instead of and keyword, || instead of or keyword
 // else if, not elif - and it's not too useful as well
 
-
+// !boolean turns boolean into its opposite
