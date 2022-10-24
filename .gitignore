@@ -134,6 +134,7 @@ __out
 
 .idea
 .idea/*
+pandas_sandbox/data
 
 # PDM
 .pdm.toml
